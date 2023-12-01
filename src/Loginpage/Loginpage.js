@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { Axios } from 'axios';
 
 function Loginpage() {
 
@@ -19,7 +19,7 @@ function Loginpage() {
         event.preventDefault();
 
         // Making call to backend to attempt to login
-        axios.post('161.35.188.98:3000/login', {
+        Axios.post('161.35.188.98:3000/login', {
             username: username,
             password: password
         })
