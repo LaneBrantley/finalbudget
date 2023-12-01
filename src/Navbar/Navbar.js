@@ -1,10 +1,21 @@
-import './App.css';
+// Navigation.js
+
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <div className="App">
-        
-    </div>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+        {/* Add more navigation links as needed */}
+      </ul>
+    </nav>
   );
 }
 

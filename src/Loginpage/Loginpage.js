@@ -14,21 +14,22 @@ function Loginpage() {
         setPassword(event.target.value);
     }
 
+    //Making call to backend to attempt to login
     const handleSubmit = (event) => {
         event.preventDefault();
-    }
 
-    //Making call to backend to attempt to login
-    axios.post('loginapi', {
-        username: username,
-        password: password
-    })
-    .then(function(response) {
-        console.log('success', response.data);
-    })
-    .catch(function(error) {
-        console.log('fail', error);
-    });
+        // Making call to backend to attempt to login
+        axios.post('161.35.188.98:3000/login', {
+            username: username,
+            password: password
+        })
+        .then(function(response) {
+            console.log('success', response.data);
+        })
+        .catch(function(error) {
+            console.log('fail', error);
+        });
+    }
 
     return (
         <div className="App">
