@@ -17,7 +17,7 @@ const handlePasswordChange = (event) => {
 const handleSubmit = (event) => {
   event.preventDefault();
   // Making call to backend to attempt to login
-  axios.post('161.35.188.98:3000/signup', {
+  axios.post('http://161.35.188.98:3000/signup', {
       username: username,
       password: password
   })
