@@ -13,6 +13,9 @@ function Navbar() {
         <li>
           <Link to="/dashboard">Dashboard</Link>
         </li>
+        <li>
+          <Link to="/signup">Signup</Link>
+        </li>
         {/* Add more navigation links as needed */}
       </ul>
     </nav>
