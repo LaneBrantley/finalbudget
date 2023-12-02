@@ -1,5 +1,3 @@
-// Navigation.js
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +11,6 @@ function Navbar() {
         <li>
           <Link to="/signup">Signup</Link>
         </li>
-        {/* Add more navigation links as needed */}
       </ul>
     </nav>
   );
