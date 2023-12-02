@@ -18,7 +18,7 @@ function Loginpage() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Making call to backend to attempt to login
-        axios.post('http://161.35.188.98:3000/login', {
+        axios.post('http://localhost:3001/signup', {
             username: username,
             password: password
         })
