@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function Budget() {
     const local = 'http://localhost:3001/makebudget';
-    const server = 'http://161.35.188.98:3000/login';
+    const server = 'http://161.35.188.98:3000/makebudget';
 
     const username = localStorage.getItem('username');
 

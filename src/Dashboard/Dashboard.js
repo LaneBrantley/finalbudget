@@ -13,7 +13,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearS
 
 function Dashboard() {
   const local = 'http://localhost:3001/getbudget';
-  const server = 'http://161.35.188.98:3000/login';
+  const server = 'http://161.35.188.98:3000/getbudget';
   const navigate = useNavigate();
   const username = localStorage.getItem('username');
   const token = localStorage.getItem('token');
