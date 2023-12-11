@@ -33,6 +33,7 @@ const handleSubmit = (event) => {
 
   return (
     <div className="App">
+      <h1>Sign Up</h1>
         <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username: </label>
                 <input aria-label={"usernameText"} type="text" id="username" value={username} onChange={handleUsernameChange} required/>
