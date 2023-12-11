@@ -139,7 +139,7 @@ function Dashboard() {
         const shouldRefresh = window.confirm("Your token is about to expire. Do you want to refresh it?");
 
         if (shouldRefresh) {
-          localStorage.setItem('expiresIn', new Date().getTime() + 60000);
+          localStorage.setItem('expirationTime', new Date().getTime() + 60000);
 
         }
       }
