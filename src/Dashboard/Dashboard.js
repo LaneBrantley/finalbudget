@@ -140,7 +140,7 @@ function Dashboard() {
 
         if (shouldRefresh) {
           axios.post('http://161.35.188.98:3000/refresh', {}).then(async function(res) {
-            localStorage.setItem('token', token);
+            localStorage.setItem('token', res.data.token);
           })
         }
       }
