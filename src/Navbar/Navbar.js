@@ -17,6 +17,9 @@ function Navbar() {
         <li>
           <Link to="/dashboard">Dashboard</Link>
         </li>
+        <li>
+          <Link to="/logout">Log out</Link>
+        </li>
       </ul>
     </nav>
   );
