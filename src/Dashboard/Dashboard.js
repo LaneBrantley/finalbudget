@@ -139,9 +139,11 @@ function Dashboard() {
         const shouldRefresh = window.confirm("Your token is about to expire. Do you want to refresh it?");
 
         if (shouldRefresh) {
-          axios.post('http://161.35.188.98:3000/refresh', { username: username }).then(async function(res) {
-            localStorage.setItem('token', res.data.token);
-          })
+          const response = async () => {
+            await axios.post('http://161.35.188.98:3000/refresh', {username: username});
+          }
+          localStorage.setItem('expiresIn', response.data.expiresIn);
+
         }
       }
     }
