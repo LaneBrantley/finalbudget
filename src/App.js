@@ -19,7 +19,6 @@ function App() {
           <Route path="/" element={
             <div>
             <h1>Homepage</h1>
-            <Route index element={<Dashboard />} />
           </div>
           }></Route>
           <Route path="/login" element={<LoginPage />} />
