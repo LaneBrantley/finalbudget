@@ -26,6 +26,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/budget" element={<Budget />} />
           <Route path="/logout" element={<Logout />} />
+          <Route path="/homepage" element={<App />} />
           {/* Add more routes as needed */}
         </Routes>
       </Router>
