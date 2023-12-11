@@ -72,7 +72,7 @@ function Dashboard() {
       const res = await axios.post(server, {
         username: username
       });
-      const buffer = await pako.inflate(new Uint8Array(res.data), { to: 'string' });
+      const buffer = await pako.inflate(new Uint8Array(res.data), { to: 'string', gzip: true });
 
 
       const newDataSource = {

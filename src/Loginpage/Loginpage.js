@@ -30,7 +30,7 @@ function Loginpage() {
         })
         .then(async function(response) {
             //Checks if token is expired, if so, then sends back to login
-            const buffer = await pako.inflate(new Uint8Array(response.data), { to: 'string' });
+            const buffer = await pako.inflate(new Uint8Array(response.data), { to: 'string', gzip: true });
             const expirationTime = new Date().getTime() + response.data.expiresIn * 1000; // Convert seconds to milliseconds
             localStorage.setItem('expirationTime', expirationTime);
             localStorage.setItem('token', response.data.token);
