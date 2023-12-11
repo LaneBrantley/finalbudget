@@ -7,6 +7,7 @@ import Dashboard from './Dashboard/Dashboard';
 import Budget from './Budget/Budget';
 import Logout from './Logout/Logout';
 import React from 'react';
+import Homepage from './Homepage/Homepage';
 //Backend address: 161.35.188.98
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/budget" element={<Budget />} />
           <Route path="/logout" element={<Logout />} />
-          <Route path="/homepage" element={<App />} />
+          <Route path="/homepage" element={<Homepage />} />
           {/* Add more routes as needed */}
         </Routes>
       </Router>
