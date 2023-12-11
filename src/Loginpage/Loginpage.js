@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Loginpage() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const local = 'http://localhost:3001/login';
+    const server = '161.35.188.98:3000/login';
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -18,12 +23,17 @@ function Loginpage() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Making call to backend to attempt to login
-        axios.post('http://localhost:3001/signup', {
+        axios.post(server, {
             username: username,
             password: password
         })
         .then(function(response) {
-            console.log('success', response.data);
+            //Checks if token is expired, if so, then sends back to login
+            const expirationTime = new Date().getTime() + response.data.expiresIn * 1000; // Convert seconds to milliseconds
+            // localStorage.setItem('expirationTime', expirationTime);
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('username', username);
+            navigate('/dashboard');
         })
         .catch(function(error) {
             console.log('fail', error);

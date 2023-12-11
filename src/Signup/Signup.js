@@ -5,6 +5,8 @@ function Signup() {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const local = 'http://localhost:3001/signup';
+  const server = '161.35.188.98:3000/signup';
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -17,7 +19,7 @@ const handlePasswordChange = (event) => {
 const handleSubmit = (event) => {
   event.preventDefault();
   // Making call to backend to attempt to login
-  axios.post('http://localhost:3001/signup', {
+  axios.post(local, {
       username: username,
       password: password
   })
