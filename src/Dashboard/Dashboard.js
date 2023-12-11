@@ -8,6 +8,7 @@ import { Doughnut } from 'react-chartjs-2';
 import { Pie } from 'react-chartjs-2';
 import { Bar } from 'react-chartjs-2';
 import pako from 'pako';
+import { Zlib } from 'zlib';
 
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
@@ -72,7 +73,21 @@ function Dashboard() {
       const res = await axios.post(server, {
         username: username
       });
-      const buffer = await pako.inflate(new Uint8Array(res.data), { to: 'string', gzip: true });
+      const contentEncoding = res.headers['content-encoding'];
+
+  let decompressedData;
+
+  if (contentEncoding === 'gzip') {
+    // Handle gzip compression
+    decompressedData = Zlib.gunzipSync(res.data);
+  } else if (contentEncoding === 'deflate') {
+    // Handle deflate compression
+    decompressedData = Zlib.inflateSync(res.data);
+  } else {
+    // No compression or unknown compression method
+    decompressedData = res.data;
+  }
+
 
 
       const newDataSource = {
