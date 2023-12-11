@@ -8,7 +8,6 @@ import { Doughnut } from 'react-chartjs-2';
 import { Pie } from 'react-chartjs-2';
 import { Bar } from 'react-chartjs-2';
 import pako from 'pako';
-import { Zlib } from 'zlib';
 
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
@@ -75,18 +74,16 @@ function Dashboard() {
       });
       const contentEncoding = res.headers['content-encoding'];
 
-  let decompressedData;
+      let decompressedData;
 
-  if (contentEncoding === 'gzip') {
-    // Handle gzip compression
-    decompressedData = Zlib.gunzipSync(res.data);
-  } else if (contentEncoding === 'deflate') {
-    // Handle deflate compression
-    decompressedData = Zlib.inflateSync(res.data);
-  } else {
-    // No compression or unknown compression method
-    decompressedData = res.data;
-  }
+      if (contentEncoding === 'gzip') {
+        decompressedData = pako.ungzip(res.data, { to: 'string' });
+      } else if (contentEncoding === 'deflate') {
+        decompressedData = pako.inflate(res.data, { to: 'string' });
+      } else {
+        // No compression or unknown compression method
+        decompressedData = res.data;
+      }
 
 
 
