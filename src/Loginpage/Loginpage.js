@@ -9,7 +9,7 @@ function Loginpage() {
     const navigate = useNavigate();
 
     const local = 'http://localhost:3001/login';
-    const server = '161.35.188.98:3000/login';
+    const server = 'http://161.35.188.98:3000/login';
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -23,7 +23,7 @@ function Loginpage() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Making call to backend to attempt to login
-        axios.post(server, {
+        axios.post('' + server, {
             username: username,
             password: password
         })
