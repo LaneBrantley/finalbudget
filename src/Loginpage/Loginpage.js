@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Navigate, useNavigate } from 'react-router-dom';
+import pako from 'pako';
 
 function Loginpage() {
 
@@ -23,14 +24,15 @@ function Loginpage() {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Making call to backend to attempt to login
-        axios.post('' + server, {
+        axios.post(server, {
             username: username,
             password: password
         })
-        .then(function(response) {
+        .then(async function(response) {
             //Checks if token is expired, if so, then sends back to login
+            const buffer = await pako.inflate(new Uint8Array(response.data), { to: 'string' });
             const expirationTime = new Date().getTime() + response.data.expiresIn * 1000; // Convert seconds to milliseconds
-            // localStorage.setItem('expirationTime', expirationTime);
+            localStorage.setItem('expirationTime', expirationTime);
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('username', username);
             navigate('/dashboard');
@@ -44,10 +46,10 @@ function Loginpage() {
         <div className="App">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username: </label>
-                <input type="text" id="username" value={username} onChange={handleUsernameChange} required/>
+                <input aria-label={"usernameText"} type="text" id="username" value={username} onChange={handleUsernameChange} required/>
 
                 <label htmlFor="password">Password: </label>
-                <input type="text" id="password" value={password} onChange={handlePasswordChange} required/>
+                <input aria-label={"passwordText"} type="text" id="password" value={password} onChange={handlePasswordChange} required/>
 
                 <button type="submit">Login</button>
             </form>

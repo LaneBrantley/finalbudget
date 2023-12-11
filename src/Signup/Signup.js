@@ -19,7 +19,7 @@ const handlePasswordChange = (event) => {
 const handleSubmit = (event) => {
   event.preventDefault();
   // Making call to backend to attempt to login
-  axios.post(local, {
+  axios.post(server, {
       username: username,
       password: password
   })
@@ -35,10 +35,10 @@ const handleSubmit = (event) => {
     <div className="App">
         <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username: </label>
-                <input type="text" id="username" value={username} onChange={handleUsernameChange} required/>
+                <input aria-label={"usernameText"} type="text" id="username" value={username} onChange={handleUsernameChange} required/>
 
                 <label htmlFor="password">Password: </label>
-                <input type="text" id="password" value={password} onChange={handlePasswordChange} required/>
+                <input aria-label={"passwordText"} type="text" id="password" value={password} onChange={handlePasswordChange} required/>
 
                 <button type="submit">Login</button>
             </form>

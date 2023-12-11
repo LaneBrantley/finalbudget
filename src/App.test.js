@@ -1,8 +1,15 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, fireEvent, screen } from "@testing-library/react";
+import App from './App'
+import React from "react";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+//test block
+test("increments counter", () => {
+// render the component on virtual dom
+render(<App />);
+
+//select the elements you want to interact with
+const counter = screen.getByTestId("header");
+
+//assert the expected result
+expect(counter).toHaveTextContent("Budget App");
 });

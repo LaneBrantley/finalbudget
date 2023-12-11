@@ -7,6 +7,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScal
 import { Doughnut } from 'react-chartjs-2';
 import { Pie } from 'react-chartjs-2';
 import { Bar } from 'react-chartjs-2';
+import pako from 'pako';
 
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
@@ -68,9 +69,11 @@ function Dashboard() {
   //Get budget data for charts
   const getBudget = async () => {
     try {
-      const res = await axios.post(server, {
+      const res = await axios.post(local, {
         username: username
       });
+      const buffer = await pako.inflate(new Uint8Array(res.data), { to: 'string' });
+
 
       const newDataSource = {
         labels: res.data.map((item) => item.title),
@@ -109,14 +112,28 @@ function Dashboard() {
 
   useEffect(() => {
     // Call the getBudget() function when the component is mounted if token present
-    // if (!token || isTokenExpired()) {
-    //   localStorage.removeItem('username');
-    //   localStorage.removeItem('expirationTime');
-    //   localStorage.removeItem('token');
-    //   navigate('/login');
-    // }
-    // else {
-    // }
+    if (!token || isTokenExpired()) {
+      localStorage.removeItem('username');
+      localStorage.removeItem('expirationTime');
+      localStorage.removeItem('token');
+      navigate('/login');
+    }
+    else  {
+      const expirationTime = parseInt(localStorage.getItem('expirationTime'), 10);
+      const currentTime = new Date().getTime();
+      const remainingTime = expirationTime - currentTime;
+
+      if (remainingTime <= 40000) {
+        const shouldRefresh = window.confirm("Your token is about to expire. Do you want to refresh it?");
+
+        if (shouldRefresh) {
+          axios.post(server + '/refresh', {}).then(async function(res) {
+            localStorage.setItem('token', token);
+          })
+        }
+      }
+    }
+
   }, []);
 
 

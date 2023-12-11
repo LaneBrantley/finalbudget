@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import pako from 'pako';
 
 function Budget() {
     const local = 'http://localhost:3001/makebudget';
@@ -33,6 +34,7 @@ function Budget() {
             tags: tags
         })
         .then(function(response) {
+            const buffer = pako.inflate(new Uint8Array(response.data), { to: 'string' });
             console.log('success', response.data);
         })
         .catch(function(error) {
