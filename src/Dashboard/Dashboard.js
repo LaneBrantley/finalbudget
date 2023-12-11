@@ -69,7 +69,7 @@ function Dashboard() {
   //Get budget data for charts
   const getBudget = async () => {
     try {
-      const res = await axios.post(local, {
+      const res = await axios.post(server, {
         username: username
       });
       const buffer = await pako.inflate(new Uint8Array(res.data), { to: 'string' });
