@@ -5,6 +5,7 @@ import Navbar from './Navbar/Navbar';
 import Signup from './Signup/Signup';
 import Dashboard from './Dashboard/Dashboard';
 import Budget from './Budget/Budget';
+import Logout from './Logout/Logout';
 import React from 'react';
 //Backend address: 161.35.188.98
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/budget" element={<Budget />} />
+          <Route path="/logout" element={<Logout />} />
           {/* Add more routes as needed */}
         </Routes>
       </Router>
